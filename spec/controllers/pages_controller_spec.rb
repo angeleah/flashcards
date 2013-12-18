@@ -2,30 +2,23 @@ require 'spec_helper'
 
 describe PagesController do
 
-  describe "authenticated user" do
-    context "home" do
+  context "when authenticated" do
+    before(:each) do
+      @current_user = User.create!(email: "coolperson@coolperson.com", password: "coolperson")
+      @current_user.confirm!
+      sign_in @current_user
+    end
+
+    describe "GET #home" do
+      before { get :home }
+
+      it { should render_template :home }
+      it { should respond_with 200 }
+      it { expect(assigns(:user)).to eq(@current_user) }
+    end
+
+    describe "scopes" do
       before(:each) do
-        @current_user = User.create!(email: "coolperson@coolperson.com", password: "coolperson")
-        @current_user.confirm!
-        sign_in @current_user
-      end
-
-      it "renders the template" do
-        get :home
-        expect(response).to render_template("home")
-      end
-
-      it "responds with a 200" do
-        get :home
-        expect(response.status).to eq(200)
-      end
-
-      it "loads the user" do
-        get :home
-        expect(assigns[:user]).to eq(@current_user)
-      end
-
-      it "loads the object_types of the cards" do
         Card.create!(term: "array difference",
          definition: "Returns a new array that is a copy of the original array, removing any items that also appear in other_ary. The order is preserved from the original array.",
          object_type: "Array",
@@ -48,9 +41,11 @@ describe PagesController do
          return_type: "Boolean")
 
         get :home
-
-        expect(assigns[:object_type]).to include("Array")
       end
+
+      it { expect(assigns(:object_type)).to include("Array") }
+      it { expect(assigns(:object_type)).to include("File") }
+
     end
   end
 end
