@@ -1,4 +1,4 @@
-class Stats < ActiveRecord::Base
+class QuizSessionQuestion < ActiveRecord::Base
   belongs_to :quiz_session
   belongs_to :user
 

@@ -1,9 +1,9 @@
-class CreateStats < ActiveRecord::Migration
+class CreateQuizSessionQuestions < ActiveRecord::Migration
   def change
-    create_table :stats do |t|
+    create_table :quiz_session_questions do |t|
       t.integer :card_id
       t.integer :user_id
-      t.boolean :result
+      t.boolean :correct
       t.integer :quiz_session_id
 
       t.timestamps

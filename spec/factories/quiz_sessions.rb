@@ -5,5 +5,6 @@ FactoryGirl.define do
     user_id 1
     start "2013-11-29 18:39:39"
     stop "2013-11-29 18:39:39"
+    object_type "Array"
   end
 end

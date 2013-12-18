@@ -1,7 +1,6 @@
 class QuizSession < ActiveRecord::Base
-  has_many :stats
+  has_many :quiz_session_questions
   belongs_to :user
 
-  validates :user_id, presence: true
-
+  validates_presence_of :user_id, :object_type
 end
