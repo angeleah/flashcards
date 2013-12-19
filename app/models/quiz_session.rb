@@ -4,8 +4,7 @@ class QuizSession < ActiveRecord::Base
 
   validates_presence_of :user_id, :object_type
 
-  def initialize(attributes)
-    super(attributes)
+  def create_quiz_session_questions
     cards.each do |card|
       quiz_session_questions << QuizSessionQuestion.new(card: card, user: user)
     end
@@ -14,4 +13,6 @@ class QuizSession < ActiveRecord::Base
   def cards
     Card.where(object_type: object_type)
   end
+
+  # finished? method
 end

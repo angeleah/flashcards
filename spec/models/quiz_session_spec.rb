@@ -14,15 +14,11 @@ describe QuizSession do
   end
 
   describe "cards" do
-    it "returns cards with the correct object type" do
-      expect(qs.cards).to eq(expected_cards)
-    end
+    it { expect(qs.cards).to eq(expected_cards) }
   end
 
-  describe "initialize" do
-    it "has a quiz session question for each card" do
-      expect(qs.quiz_session_questions.map(&:card_id)).to match_array(expected_cards.map(&:id))
-      # expect(qs.quiz_session_questions.length).to eq(expected_cards.length)
-    end
+  describe "create_quiz_session_questions" do
+    it { expect(qs.create_quiz_session_questions.map(&:id)).to match_array(expected_cards.map(&:id)) }
+    it { expect(qs.create_quiz_session_questions.length).to eq(expected_cards.length) }
   end
 end
