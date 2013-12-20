@@ -12,17 +12,4 @@ class QuizSessionsController < ApplicationController
       redirect_to root_path, alert: "There was a problem."
     end
   end
-
-  def show
-
-  end
-
-
-  #need to get all the questions and answers
-  #shuffle them
-  # (maybe I need to use JS to layer them on top of eachother and then )
-  #allow them to quiz themself
-  #have an I'm finished button?
-  #that is all of the methods notice if at the end?
-
 end

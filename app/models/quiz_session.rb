@@ -4,15 +4,18 @@ class QuizSession < ActiveRecord::Base
 
   validates_presence_of :user_id, :object_type
 
-  def create_quiz_session_questions
-    cards.each do |card|
-      quiz_session_questions << QuizSessionQuestion.new(card: card, user: user)
-    end
-  end
+  after_create :create_questions
 
   def cards
     Card.where(object_type: object_type)
   end
 
+  private
+
+  def create_questions
+    cards.each do |card|
+      quiz_session_questions << QuizSessionQuestion.new(card: card, user: user)
+    end
+  end
   # finished? method
 end

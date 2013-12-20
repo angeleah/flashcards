@@ -11,6 +11,7 @@ describe Card do
 
   describe ".object_types" do
     before(:all) do
+      Card.destroy_all
       create_cards
     end
     subject(:unique_object_types) { Card.object_types }

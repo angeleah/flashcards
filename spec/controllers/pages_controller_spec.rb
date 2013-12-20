@@ -11,6 +11,7 @@ describe PagesController do
 
     describe "GET #home" do
       before(:all) do
+        Card.destroy_all
         create_cards
       end
       before { get :home }
