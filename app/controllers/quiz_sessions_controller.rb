@@ -12,4 +12,6 @@ class QuizSessionsController < ApplicationController
       redirect_to root_path, alert: "There was a problem."
     end
   end
+
+
 end

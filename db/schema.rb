@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131213014436) do
+ActiveRecord::Schema.define(version: 20131221231329) do
 
   create_table "cards", force: true do |t|
     t.string   "term"
@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(version: 20131213014436) do
     t.string   "return_type"
   end
 
-  create_table "quiz_session_questions", force: true do |t|
+  create_table "questions", force: true do |t|
     t.integer  "card_id"
     t.integer  "user_id"
     t.boolean  "correct"

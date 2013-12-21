@@ -4,6 +4,6 @@ Flashcards::Application.routes.draw do
   root to: "pages#home"
 
   resources :cards, only: :show
-  resources :quiz_sessions, only: [:create, :show]
+  resources :quiz_sessions, only: [:create, :show ]
 
 end

@@ -1,4 +1,4 @@
-class QuizSessionQuestion < ActiveRecord::Base
+class Question < ActiveRecord::Base
   belongs_to :quiz_session
   belongs_to :user
   belongs_to :card

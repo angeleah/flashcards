@@ -25,8 +25,11 @@ describe QuizSessionsController do
     end
 
     describe "GET #stats" do
-      let(:qs) { QuizSession.new }
 
+      before(:each) do
+        Card.destroy_all
+        create_cards
+      end
     end
   end
 end
