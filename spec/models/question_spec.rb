@@ -12,11 +12,4 @@ describe Question do
     it { should belong_to :user }
     it { should belong_to :card }
   end
-
-  describe "unanswered" do
-    before(:each) do
-      Card.destroy_all
-      create_cards
-    end
-  end
 end

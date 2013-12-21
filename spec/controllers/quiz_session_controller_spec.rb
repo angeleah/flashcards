@@ -29,7 +29,14 @@ describe QuizSessionsController do
       before(:each) do
         Card.destroy_all
         create_cards
+        qs = QuizSession.create!(object_type: "Array", user: @user)
+        qs.questions.each do |q|
+          q.update!(correct: true)
+        end
+        get :stats, id: qs.id
       end
+
+      it { should render_template(:stats) }
     end
   end
 end

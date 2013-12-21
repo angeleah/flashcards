@@ -13,5 +13,9 @@ class QuizSessionsController < ApplicationController
     end
   end
 
+  def stats
+
+  end
+
 
 end
