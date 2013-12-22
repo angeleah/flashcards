@@ -39,4 +39,26 @@ describe QuizSession do
   describe "unfinished quiz_session" do
     it { expect(qs.finished?).to be_false }
   end
+
+  describe "get question" do
+    before(:each) do
+      qs.questions.first.update!(correct: true)
+      qs.questions.reload
+    end
+
+    it "gets an unanswered question" do
+      expect(qs.get_question).to eq(qs.questions.last)
+    end
+  end
+
+  describe "unanswered" do
+    before(:each) do
+      qs.questions.first.update!(correct: true)
+      qs.questions.reload
+    end
+
+    it "gets an unanswered question" do
+      expect(qs.unanswered).to eq([qs.questions.last])
+    end
+  end
 end

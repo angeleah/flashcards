@@ -7,6 +7,9 @@ describe QuizSessionsController do
       @user = User.create!( email: "coolperson@coolperson.com" , password: "coolpants")
       @user.confirm!
       sign_in @user
+      Card.destroy_all
+      create_cards
+      @qs = QuizSession.create!(object_type: "Array", user: @user)
     end
 
     describe "POST #create" do
@@ -14,7 +17,6 @@ describe QuizSessionsController do
         before { post :create, object_type: "Array" }
 
         it { should redirect_to(quiz_session_path(QuizSession.last)) }
-        it { expect(assigns(:quiz_session)).not_to be_nil }
       end
 
       context "without correct params" do
@@ -24,16 +26,32 @@ describe QuizSessionsController do
       end
     end
 
-    describe "GET #stats" do
+    describe "show" do
+      context "when quiz is finished" do
+        before(:each) do
+          @qs.questions.each do |q|
+            q.update!(correct: true)
+          end
+          get :show, id: @qs.id
+        end
 
+        it { should redirect_to(stats_quiz_session_path(QuizSession.last)) }
+      end
+
+      context "when quiz is not finished" do
+          before { get :show, id: @qs.id }
+
+          it { should render_template(:show) }
+          it { expect(assigns(:question)).not_to be_nil }
+      end
+    end
+
+    describe "GET #stats" do
       before(:each) do
-        Card.destroy_all
-        create_cards
-        qs = QuizSession.create!(object_type: "Array", user: @user)
-        qs.questions.each do |q|
+        @qs.questions.each do |q|
           q.update!(correct: true)
         end
-        get :stats, id: qs.id
+        get :stats, id: @qs.id
       end
 
       it { should render_template(:stats) }

@@ -4,7 +4,9 @@ Flashcards::Application.routes.draw do
   root to: "pages#home"
 
   resources :cards, only: :show
-  resources :quiz_sessions, only: [:create, :show]
-  get 'quiz_sessions/:id/stats', to: 'quiz_sessions#stats'
-
+  resources :quiz_sessions, only: [:create, :show] do
+    member do
+      get 'stats'
+    end
+  end
 end

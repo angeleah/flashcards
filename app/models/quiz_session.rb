@@ -14,6 +14,14 @@ class QuizSession < ActiveRecord::Base
     questions.all? { |q| q.correct.present? }
   end
 
+  def get_question
+    unanswered.sample
+  end
+
+  def unanswered
+    questions.map{ |q| q if q.correct.nil? }.compact
+  end
+
   private
 
   def create_questions
