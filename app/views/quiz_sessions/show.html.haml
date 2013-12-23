@@ -1,1 +1,6 @@
-= @question
+= @card.definition
+= form_tag(answer_quiz_session_path, :method => 'post')do
+  = text_field_tag(:submitted_answer, nil, placeholder: "Enter your answer here" )
+  = hidden_field_tag(:card, @card.id)
+  = submit_tag "Am I right?"
+

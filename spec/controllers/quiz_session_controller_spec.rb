@@ -42,7 +42,7 @@ describe QuizSessionsController do
           before { get :show, id: @qs.id }
 
           it { should render_template(:show) }
-          it { expect(assigns(:question)).not_to be_nil }
+          it { expect(assigns(:card)).not_to be_nil }
       end
     end
 
@@ -58,3 +58,4 @@ describe QuizSessionsController do
     end
   end
 end
+

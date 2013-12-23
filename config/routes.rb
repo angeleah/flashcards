@@ -1,12 +1,12 @@
 Flashcards::Application.routes.draw do
 
+  root "pages#home"
   devise_for :users
-  root to: "pages#home"
 
-  resources :cards, only: :show
   resources :quiz_sessions, only: [:create, :show] do
     member do
       get 'stats'
+      post 'answer'
     end
   end
 end
