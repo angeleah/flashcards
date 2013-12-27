@@ -14,11 +14,11 @@ class QuizSessionsController < ApplicationController
   end
 
   def show
-    quiz_session = QuizSession.where(id: params[:id], user: current_user).first
-    if quiz_session.finished?
-      redirect_to stats_quiz_session_url(quiz_session)
+    @quiz_session = QuizSession.where(id: params[:id], user: current_user).first
+    if @quiz_session.finished?
+      redirect_to stats_quiz_session_url(@quiz_session)
     else
-      @card = quiz_session.get_question.card
+      @card = @quiz_session.get_question.card
     end
   end
 
@@ -27,8 +27,16 @@ class QuizSessionsController < ApplicationController
   end
 
   def answer
-
+    submitted_answer = params[:submitted_answer].downcase
+    actual_answer = Card.where(id: params[:card]).first.term
+    quiz_session = QuizSession.where(id: params[:qs], user: current_user).first
+    question_record = quiz_session.questions.where(card_id: params[:card], user: current_user).first
+    if submitted_answer == actual_answer
+      question_record.update!(answer: submitted_answer, correct: true)
+      redirect_to quiz_session_url(quiz_session), alert: "That was correct."
+    else
+      question_record.update!(answer: submitted_answer, correct: false)
+      redirect_to quiz_session_url(quiz_session), alert: "That was incorrect."
+    end
   end
-
-
 end

@@ -11,7 +11,7 @@ class QuizSession < ActiveRecord::Base
   end
 
   def finished?
-    questions.all? { |q| q.correct.present? }
+    unanswered.length < 1
   end
 
   def get_question

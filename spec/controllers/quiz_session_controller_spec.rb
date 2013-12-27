@@ -35,7 +35,7 @@ describe QuizSessionsController do
           get :show, id: @qs.id
         end
 
-        it { should redirect_to(stats_quiz_session_path(QuizSession.last)) }
+        it { should redirect_to(stats_quiz_session_path(@qs)) }
       end
 
       context "when quiz is not finished" do
@@ -55,6 +55,22 @@ describe QuizSessionsController do
       end
 
       it { should render_template(:stats) }
+    end
+
+    describe "POST answer" do
+      let(:current_card) { @qs.questions.first.card_id }
+
+      it "records the submitted answer" do
+        post :answer, submitted_answer: "cool_method", card: current_card, qs: @qs.id
+        expect(@qs.questions.first.answer).to eq("cool_method")
+        expect(@qs.questions.first.correct).to be_false
+      end
+
+      it "redirects to quiz session path" do
+        post :answer, submitted_answer: "cool_method", card: current_card, qs: @qs.id
+        response.should redirect_to(quiz_session_path(@qs))
+        expect(flash[:alert]).to eq("That was incorrect.")
+      end
     end
   end
 end

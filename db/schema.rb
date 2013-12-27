@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131221231329) do
+ActiveRecord::Schema.define(version: 20131226201839) do
 
   create_table "cards", force: true do |t|
     t.string   "term"
@@ -30,6 +30,7 @@ ActiveRecord::Schema.define(version: 20131221231329) do
     t.integer  "quiz_session_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "answer"
   end
 
   create_table "quiz_sessions", force: true do |t|

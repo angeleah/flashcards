@@ -6,7 +6,8 @@ Flashcards::Application.routes.draw do
   resources :quiz_sessions, only: [:create, :show] do
     member do
       get 'stats'
-      post 'answer'
     end
   end
+
+  post 'answer', to: 'quiz_sessions#answer'
 end
