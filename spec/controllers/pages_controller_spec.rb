@@ -12,7 +12,8 @@ describe PagesController do
     describe "GET #home" do
       before(:all) do
         Card.destroy_all
-        create_cards
+        create_ruby_cards
+        create_clojure_card
       end
       before { get :home }
 
@@ -20,7 +21,8 @@ describe PagesController do
       it { should respond_with 200 }
       it { expect(assigns(:user)).to eq(@current_user) }
 
-      it { expect(assigns(:object_type)).to match_array(["Array", "File"]) }
+      it { expect(assigns(:category)).to match_array(["Ruby", "Clojure"]) }
+      it { expect(assigns(:object_type)).to match_array(["Array", "Core", "File"]) }
     end
   end
 end

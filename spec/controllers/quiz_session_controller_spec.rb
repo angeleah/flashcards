@@ -8,13 +8,13 @@ describe QuizSessionsController do
       @user.confirm!
       sign_in @user
       Card.destroy_all
-      create_cards
-      @qs = QuizSession.create!(object_type: "Array", user: @user)
+      create_ruby_cards
+      @qs = QuizSession.create!(category: "Ruby", object_type: "Array", user: @user)
     end
 
     describe "POST #create" do
       context "with correct params" do
-        before { post :create, object_type: "Array" }
+        before { post :create, category: "Ruby", object_type: "Array" }
 
         it { should redirect_to(quiz_session_path(QuizSession.last)) }
       end

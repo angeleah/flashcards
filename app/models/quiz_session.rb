@@ -2,12 +2,12 @@ class QuizSession < ActiveRecord::Base
   has_many :questions
   belongs_to :user
 
-  validates_presence_of :user_id, :object_type
+  validates_presence_of :user_id, :object_type, :category
 
   after_create :create_questions
 
   def cards
-    Card.where(object_type: object_type)
+    Card.where(category: category, object_type: object_type)
   end
 
   def finished?

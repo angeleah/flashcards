@@ -1,5 +1,6 @@
 %h1 Welcome to Ruby Flashcards!
 %h3 Choose a Class or Module to study it's methods.
 = form_tag(quiz_sessions_path, :method => 'post')do
+  = select_tag(:category, options_for_select(@category))
   = select_tag(:object_type, options_for_select(@object_type))
   = submit_tag "Start my study session!"
