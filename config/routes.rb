@@ -10,4 +10,6 @@ Flashcards::Application.routes.draw do
   end
 
   post 'answer', to: 'quiz_sessions#answer'
+
+  mount JasmineRails::Engine => "/specs" if defined?(JasmineRails)
 end

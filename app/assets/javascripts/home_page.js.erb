@@ -1,4 +1,4 @@
 var categoryObjectTypes = {
-  Ruby: Card.get_category_object_types("Ruby").to_json,
-  Clojure: Card.get_category_object_types("Clojure").to_json
+  Ruby: <%= Card.category_object_types("Ruby").to_json %>,
+  Clojure: <%= Card.category_object_types("Clojure").to_json %>
 };
