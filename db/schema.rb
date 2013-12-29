@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131228215544) do
+ActiveRecord::Schema.define(version: 20131229004649) do
 
   create_table "cards", force: true do |t|
     t.string   "term"
@@ -36,8 +36,6 @@ ActiveRecord::Schema.define(version: 20131228215544) do
 
   create_table "quiz_sessions", force: true do |t|
     t.integer  "user_id"
-    t.time     "start"
-    t.time     "stop"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "object_type"

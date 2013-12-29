@@ -5,7 +5,7 @@ class QuizSessionsController < ApplicationController
   def create
     quiz_type = params[:object_type]
     quiz_category = params[:category]
-    quiz_session = QuizSession.create(user_id: current_user.id, start: Time.now, category: quiz_category, object_type: quiz_type)
+    quiz_session = QuizSession.create(user_id: current_user.id, category: quiz_category, object_type: quiz_type)
 
     if quiz_session.persisted?
       redirect_to quiz_session_url(quiz_session)
