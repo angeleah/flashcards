@@ -40,4 +40,8 @@ class QuizSessionsController < ApplicationController
       redirect_to quiz_session_url(quiz_session), alert: "That was incorrect."
     end
   end
+
+  def clean_answer(dirty_answer)
+    dirty_answer.gsub(/\s+/, "")
+  end
 end

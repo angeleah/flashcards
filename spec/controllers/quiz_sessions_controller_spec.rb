@@ -72,6 +72,12 @@ describe QuizSessionsController do
         expect(flash[:alert]).to eq("That was incorrect.")
       end
     end
+
+    describe ".clean_answer" do
+      it "removes the whitespace" do
+        expect(subject.clean_answer(" cool  answer bro   ")).to eq("coolanswerbro")
+      end
+    end
   end
 end
 
