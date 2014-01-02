@@ -29,7 +29,7 @@ class QuizSessionsController < ApplicationController
 
   def answer
     submitted_answer = strip_whitespace(params[:submitted_answer].downcase)
-    actual_answer = Card.where(id: params[:card]).first.term
+    actual_answer = strip_whitespace(Card.where(id: params[:card]).first.term)
     quiz_session = QuizSession.where(id: params[:qs], user: current_user).first
     question_record = quiz_session.questions.where(card_id: params[:card], user: current_user).first
     if submitted_answer == actual_answer
@@ -40,6 +40,8 @@ class QuizSessionsController < ApplicationController
       redirect_to quiz_session_url(quiz_session), alert: "That was incorrect."
     end
   end
+
+  private
 
   def strip_whitespace(dirty_answer)
     dirty_answer.gsub(/\s+/, "")
