@@ -28,7 +28,7 @@ class QuizSessionsController < ApplicationController
   end
 
   def answer
-    submitted_answer = params[:submitted_answer].downcase
+    submitted_answer = strip_whitespace(params[:submitted_answer].downcase)
     actual_answer = Card.where(id: params[:card]).first.term
     quiz_session = QuizSession.where(id: params[:qs], user: current_user).first
     question_record = quiz_session.questions.where(card_id: params[:card], user: current_user).first
@@ -41,7 +41,7 @@ class QuizSessionsController < ApplicationController
     end
   end
 
-  def clean_answer(dirty_answer)
+  def strip_whitespace(dirty_answer)
     dirty_answer.gsub(/\s+/, "")
   end
 end

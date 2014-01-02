@@ -73,11 +73,10 @@ describe QuizSessionsController do
       end
     end
 
-    describe ".clean_answer" do
+    describe ".strip_whitespace" do
       it "removes the whitespace" do
-        expect(subject.clean_answer(" cool  answer bro   ")).to eq("coolanswerbro")
+        expect(subject.strip_whitespace(" cool  answer bro   ")).to eq("coolanswerbro")
       end
     end
   end
 end
-
