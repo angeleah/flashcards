@@ -11,10 +11,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131229004649) do
+ActiveRecord::Schema.define(version: 20140102231438) do
 
   create_table "cards", force: true do |t|
-    t.string   "term"
     t.string   "definition"
     t.string   "object_type"
     t.text     "example"
@@ -40,6 +39,11 @@ ActiveRecord::Schema.define(version: 20131229004649) do
     t.datetime "updated_at"
     t.string   "object_type"
     t.string   "category"
+  end
+
+  create_table "terms", force: true do |t|
+    t.string  "term"
+    t.integer "card_id"
   end
 
   create_table "users", force: true do |t|

@@ -29,10 +29,11 @@ class QuizSessionsController < ApplicationController
 
   def answer
     submitted_answer = strip_whitespace(params[:submitted_answer].downcase)
-    actual_answer = strip_whitespace(Card.where(id: params[:card]).first.term)
+
     quiz_session = QuizSession.where(id: params[:qs], user: current_user).first
     question_record = quiz_session.questions.where(card_id: params[:card], user: current_user).first
-    if submitted_answer == actual_answer
+
+    if correct_answer?(submitted_answer)
       question_record.update!(answer: submitted_answer, correct: true)
       redirect_to quiz_session_url(quiz_session), alert: "That was correct."
     else
@@ -43,7 +44,18 @@ class QuizSessionsController < ApplicationController
 
   private
 
+  def possible_answers
+    Card.where(id: params[:card]).first.terms.map { |term| strip_whitespace(term.term.downcase) }
+  end
+
   def strip_whitespace(dirty_answer)
     dirty_answer.gsub(/\s+/, "")
+  end
+
+  def correct_answer?(submitted_answer)
+    possible_answers.each do |answer|
+      return true if submitted_answer == answer
+    end
+    false
   end
 end

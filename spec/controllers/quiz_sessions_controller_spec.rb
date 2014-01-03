@@ -60,10 +60,16 @@ describe QuizSessionsController do
     describe "POST answer" do
       let(:current_card) { @qs.questions.first.card_id }
 
-      it "records the submitted answer" do
+      it "records the submitted answer when incorrect" do
         post :answer, submitted_answer: "cool_method", card: current_card, qs: @qs.id
         expect(@qs.questions.first.answer).to eq("cool_method")
         expect(@qs.questions.first.correct).to be_false
+      end
+
+      it "records the submitted answer when correct" do
+        post :answer, submitted_answer: "array difference", card: current_card, qs: @qs.id
+        expect(@qs.questions.first.answer).to eq("arraydifference")
+        expect(@qs.questions.first.correct).to be_true
       end
 
       it "redirects to quiz session path" do

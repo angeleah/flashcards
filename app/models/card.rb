@@ -1,5 +1,7 @@
 class Card < ActiveRecord::Base
-  validates :term, :definition, :category, :object_type, :example, :return_type, presence: true
+  has_many :terms, :inverse_of => :card
+  accepts_nested_attributes_for :terms
+  validates :terms, :definition, :category, :object_type, :example, :return_type, presence: true
 
   def self.object_types
     select("object_type").collect(&:object_type).uniq!.sort
