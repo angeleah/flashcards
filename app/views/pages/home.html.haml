@@ -4,3 +4,7 @@
   = select_tag(:category, options_for_select(@category), :class => "category_select")
   = select_tag(:object_type, options_for_select(@object_type), :class => "options_select")
   = submit_tag "Start my study session!"
+
+- content_for :page_specific_scripts do
+  = javascript_include_tag "home_page"
+
