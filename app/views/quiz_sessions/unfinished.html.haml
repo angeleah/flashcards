@@ -1,0 +1,9 @@
+- if @unfinished_quizzes.empty?
+  Congrats! You have no unfinished quizzes.
+  %a{href: "/"} Take a quiz now
+- else
+  %ul
+  - @unfinished_quizzes.each do |quiz|
+    %li
+      #{quiz.category}'s #{quiz.object_type} on #{local_display_date(quiz.created_at)}
+      %a{ href: quiz_session_path(quiz.id) } Finish the quiz.

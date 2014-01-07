@@ -38,6 +38,10 @@ class QuizSessionsController < ApplicationController
     end
   end
 
+  def unfinished
+    @unfinished_quizzes ||= QuizSession.where(user: current_user).collect{ |qs| qs if !qs.finished? }.compact
+  end
+
   private
 
   def possible_answers

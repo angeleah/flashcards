@@ -11,21 +11,6 @@ describe StatsController do
       @qs = QuizSession.create!(category: "Ruby", object_type: "Array", user: @user)
     end
 
-    describe "GET #stats" do
-      before(:each) do
-        @qs.questions.each do |q|
-          q.update!(correct: true)
-        end
-        get :show, id: @qs.id
-      end
-
-      it { should render_template(:show) }
-      it { expect(assigns(:quiz_session)).not_to be_nil }
-      it { expect(assigns(:correct)).not_to be_nil }
-      it { expect(assigns(:question_total)).not_to be_nil }
-
-    end
-
     describe "GET #index" do
       before(:each) do
         create_clojure_card
@@ -38,6 +23,20 @@ describe StatsController do
 
       it { should render_template(:index) }
       it { expect(assigns(:past_quizzes).count).to eq(5) }
+    end
+
+    describe "GET #stats" do
+      before(:each) do
+        @qs.questions.each do |q|
+          q.update!(correct: true)
+        end
+        get :show, id: @qs.id
+      end
+
+      it { should render_template(:show) }
+      it { expect(assigns(:quiz_session)).not_to be_nil }
+      it { expect(assigns(:correct)).not_to be_nil }
+      it { expect(assigns(:question_total)).not_to be_nil }
     end
   end
 end

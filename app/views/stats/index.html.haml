@@ -1,5 +1,14 @@
+- if @past_quizzes.empty?
+  You haven't quized yourself yet!
+  %a{href: "/"} Quiz yourself
 - @past_quizzes.each do |quiz|
   %ul
     %li
-      %a{:href => "#{ stat_path(quiz.id)}"} #{ quiz.category }'s #{ quiz.object_type }
+      %a{href: "#{ stat_path(quiz.id)}"} #{ quiz.category }'s #{ quiz.object_type }
       on #{ local_display_date(quiz.created_at) }
+
+/ highchart possibiilities
+/ http://www.highcharts.com/demo/line-time-series
+/ http://www.highcharts.com/demo/bar-basic
+/ http://www.highcharts.com/demo/column-negative
+/ http://www.highcharts.com/demo/column-rotated-labels

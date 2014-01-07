@@ -67,5 +67,16 @@ describe QuizSessionsController do
         expect(flash[:alert]).to eq("That was incorrect.")
       end
     end
+
+    describe "get #unfinshed" do
+      before(:each) do
+        QuizSession.create!(category: "Ruby", object_type: "Array", user: @user)
+        get :unfinished
+      end
+
+
+      it { should render_template(:unfinished) }
+      it { expect(assigns(:unfinished_quizzes).count).to eq(2) }
+    end
   end
 end
