@@ -17,20 +17,16 @@ class QuizSessionsController < ApplicationController
   def show
     @quiz_session = QuizSession.where(id: params[:id], user: current_user).first
     if @quiz_session.finished?
-      redirect_to stats_quiz_session_url(@quiz_session)
+      redirect_to stat_path(@quiz_session)
     else
       @card = @quiz_session.get_question.card
     end
   end
 
-  def stats
-
-  end
-
   def answer
     submitted_answer = strip_whitespace(params[:submitted_answer].downcase)
 
-    quiz_session = QuizSession.where(id: params[:qs], user: current_user).first
+    quiz_session = QuizSession.where(id: params[:id], user: current_user).first
     question_record = quiz_session.questions.where(card_id: params[:card], user: current_user).first
 
     if correct_answer?(submitted_answer)

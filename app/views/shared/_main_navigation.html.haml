@@ -1,0 +1,6 @@
+.main_navigation
+  = link_to("logout", destroy_user_session_path, :method => :delete)
+  - if params[:controller] != 'stats'
+    = link_to("stats", stats_path)
+  - if params[:controller] != 'pages'
+    = link_to("Quiz me", root_path)

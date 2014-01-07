@@ -1,8 +1,8 @@
-# angeleah = User.create!(email: "angeleah@gmail.com", password: "coolpants", password_confirmation: "coolpants")
-# angeleah.confirm!
+angeleah = User.create!(email: "angeleah@gmail.com", password: "coolpants", password_confirmation: "coolpants")
+angeleah.confirm!
 
-# dayton = User.create!(email: "dayton@gmail.com", password: "coolpants2", password_confirmation: "coolpants2")
-# dayton.confirm!
+dayton = User.create!(email: "dayton@gmail.com", password: "coolpants2", password_confirmation: "coolpants2")
+dayton.confirm!
 
 
 Card.create!( terms_attributes: [{term: "-"}, {term: "array difference"}],

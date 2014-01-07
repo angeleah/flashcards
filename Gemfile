@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'awesome_print'
+gem 'browser-timezone-rails'
 gem 'coffee-rails', '~> 4.0.0'
 gem 'devise'
 gem 'ejs'

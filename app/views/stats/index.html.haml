@@ -1,0 +1,5 @@
+- @past_quizzes.each do |quiz|
+  %ul
+    %li
+      %a{:href => "#{ stat_path(quiz.id)}"} #{ quiz.category }'s #{ quiz.object_type }
+      on #{ local_display_date(quiz.created_at) }

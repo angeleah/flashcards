@@ -8,10 +8,13 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-<p class="notice"><%= notice %></p>
-<p class="alert"><%= alert %></p>
+  <% if user_signed_in?  %>
+    <%= render 'shared/main_navigation' %>
+  <% end %>
+  <p class="notice"><%= notice %></p>
+  <p class="alert"><%= alert %></p>
 
-<%= yield %>
+  <%= yield %>
 
 </body>
 </html>

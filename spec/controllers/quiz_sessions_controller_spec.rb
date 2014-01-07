@@ -35,7 +35,7 @@ describe QuizSessionsController do
           get :show, id: @qs.id
         end
 
-        it { should redirect_to(stats_quiz_session_path(@qs)) }
+        it { should redirect_to(stat_path(@qs)) }
       end
 
       context "when quiz is not finished" do
@@ -46,34 +46,23 @@ describe QuizSessionsController do
       end
     end
 
-    describe "GET #stats" do
-      before(:each) do
-        @qs.questions.each do |q|
-          q.update!(correct: true)
-        end
-        get :stats, id: @qs.id
-      end
-
-      it { should render_template(:stats) }
-    end
-
     describe "POST answer" do
       let(:current_card) { @qs.questions.first.card_id }
 
       it "records the submitted answer when incorrect" do
-        post :answer, submitted_answer: "cool_method", card: current_card, qs: @qs.id
+        post :answer, submitted_answer: "cool_method", card: current_card, id: @qs.id
         expect(@qs.questions.first.answer).to eq("cool_method")
         expect(@qs.questions.first.correct).to be_false
       end
 
       it "records the submitted answer when correct" do
-        post :answer, submitted_answer: "array difference", card: current_card, qs: @qs.id
+        post :answer, submitted_answer: "array difference", card: current_card, id: @qs.id
         expect(@qs.questions.first.answer).to eq("arraydifference")
         expect(@qs.questions.first.correct).to be_true
       end
 
       it "redirects to quiz session path" do
-        post :answer, submitted_answer: "cool_method", card: current_card, qs: @qs.id
+        post :answer, submitted_answer: "cool_method", card: current_card, id: @qs.id
         response.should redirect_to(quiz_session_path(@qs))
         expect(flash[:alert]).to eq("That was incorrect.")
       end

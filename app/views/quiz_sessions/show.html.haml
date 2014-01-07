@@ -2,6 +2,6 @@
 = form_tag(answer_path, :method => 'post')do
   = text_field_tag(:submitted_answer, nil, placeholder: "Enter your answer here" )
   = hidden_field_tag(:card, @card.id)
-  = hidden_field_tag(:qs, @quiz_session.id)
+  = hidden_field_tag(:id, @quiz_session.id)
   = submit_tag "Am I right?"
 
