@@ -2,6 +2,7 @@ Flashcards::Application.routes.draw do
   root "pages#home"
   devise_for :users
 
+  resources :cards
   resources :stats, only: [:create, :show, :index]
 
   resources :quiz_sessions, only: [:create, :show]

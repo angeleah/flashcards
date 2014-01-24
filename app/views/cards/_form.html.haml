@@ -1,0 +1,33 @@
+= form_for @card do |f|
+  - if @card.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@card.errors.count, "error")} prohibited this card from being saved:"
+      %ul
+        - @card.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label :category
+    = f.text_field :category, value: Card.last.category
+  .field
+    = f.label :object_type
+    = f.text_field :object_type, value: Card.last.object_type
+  .field#termgroup
+    = f.label :terms
+    = f.fields_for :terms do |term|
+      term.text_field :term
+  %button#add_term + Term
+  .field
+    = f.label :return_type
+    = f.text_field :return_type
+  .field
+    = f.label :definition
+    = f.text_field :definition
+  .field
+    = f.label :example
+    = f.text_area :example
+  .actions
+    = f.submit 'Save'
+
+- content_for :page_specific_scripts do
+  = javascript_include_tag "card_form"

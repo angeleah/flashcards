@@ -1,0 +1,19 @@
+%p
+  %b Definition:
+  = @card.definition
+%p
+  %b Object type:
+  = @card.object_type
+%p
+  %b Example:
+  = @card.example
+%p
+  %b Return type:
+  = @card.return_type
+%p
+  %b Category:
+  = @card.category
+
+= link_to 'Edit', edit_card_path(@card)
+\|
+= link_to 'Back', cards_path

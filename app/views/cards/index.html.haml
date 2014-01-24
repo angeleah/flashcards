@@ -1,0 +1,27 @@
+%h1 Listing cards
+
+%table
+  %tr
+    %th Definition
+    %th Object type
+    %th Example
+    %th Return type
+    %th Category
+    %th
+    %th
+    %th
+
+  - @cards.each do |card|
+    %tr
+      %td= card.definition
+      %td= card.object_type
+      %td= card.example
+      %td= card.return_type
+      %td= card.category
+      %td= link_to 'Show', card
+      %td= link_to 'Edit', edit_card_path(card)
+      %td= link_to 'Destroy', card, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Card', new_card_path
