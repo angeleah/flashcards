@@ -1,8 +1,19 @@
-.main_navigation
-- if params[:controller] != 'stats'
-  = link_to("Stats", stats_path)
-- if params[:controller] != 'pages'
-  = link_to("Quiz me", root_path)
-- if params[:action] != 'unfinished'
-  = link_to("Unfinished Quizes", unfinished_path)
-= link_to("Logout", destroy_user_session_path, :method => :delete)
+.row.main_navigation
+  .large-12.columns
+    .nav-bar.right
+      %ul.button-group
+        - if params[:controller] != 'stats'
+          %li
+            = link_to("Stats", stats_path, class: "button")
+        - if params[:controller] != 'pages'
+          %li
+            = link_to("Quiz me", root_path, class: "button")
+        - if params[:action] != 'unfinished'
+          %li
+            = link_to("Unfinished Quizes", unfinished_path, class: "button")
+          %li
+            = link_to("Logout", destroy_user_session_path, :method => :delete, class: "button")
+    %h1
+      Ruby Flashcards
+    %h4 Know your tools.
+    %hr/

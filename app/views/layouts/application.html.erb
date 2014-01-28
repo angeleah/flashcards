@@ -13,8 +13,12 @@
   <% if user_signed_in?  %>
     <%= render 'shared/main_navigation' %>
   <% end %>
-  <p class="notice"><%= notice %></p>
-  <p class="alert"><%= alert %></p>
+  <div class="notifications row">
+    <div class="large-12 center-text">
+      <p class="notice"><%= notice %></p>
+      <p class="alert"><%= alert %></p>
+    </div>
+  </div>
 
   <%= yield %>
 

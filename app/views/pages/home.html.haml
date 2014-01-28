@@ -1,10 +1,15 @@
-%h1 Welcome to Ruby Flashcards!
-%h3 Choose a Class or Module to study it's methods.
-= form_tag(quiz_sessions_path, :method => 'post')do
-  = select_tag(:category, options_for_select(@category), :class => "category_select")
-  = select_tag(:object_type, options_for_select(@object_type), :class => "options_select")
-  = submit_tag "Start my study session!"
+.row
+  .large-6.columns
+    %h3
+      Welcome to Ruby Flashcards!
+    %h6
+    Choose a Class or Module to study it's methods.
+  .large-6.columns
+    = form_tag(quiz_sessions_path, :method => 'post')do
+      = select_tag(:category, options_for_select(@category), :class => "category_select")
+      = select_tag(:object_type, options_for_select(@object_type), :class => "options_select")
+      = submit_tag "Start my study session!", class: "button"
+%hr/
 
 - content_for :page_specific_scripts do
   = javascript_include_tag "home_page"
-

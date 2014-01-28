@@ -1,10 +1,14 @@
-Congrats on taking the time to work on leveling up!
-%p You got #{ @correct } correct out of #{ @question_total}.
-= form_tag(quiz_sessions_path, :method => 'post')do
-  = hidden_field_tag(:category, @quiz_session.category)
-  = hidden_field_tag(:object_type, @quiz_session.object_type)
-  = submit_tag "Quiz yourself on #{ @quiz_session.category }'s #{ @quiz_session.object_type} again?"
+.row
+  .large-12.columns.center-text
+    %p Congrats on taking the time to work on leveling up!
+    %p You got #{ @correct } correct out of #{ @question_total}.
+    = form_tag(quiz_sessions_path, :method => 'post')do
+      = hidden_field_tag(:category, @quiz_session.category)
+      = hidden_field_tag(:object_type, @quiz_session.object_type)
+      = submit_tag "Quiz yourself on #{ @quiz_session.category }'s #{ @quiz_session.object_type} again?", :class => 'button center-text'
+  .large-12.columns.center-text
+    %a{ href: stats_path } View all your stats
 
-%a{ href: "/" } Pick something else to quiz yourself on.
-%p
-%a{ href: stats_path } View all your stats.
+
+
+/add a graph to fill out the main body of the site.  Maybe even being cheesy like saying, "You could have a cool graph here if you would just quiz yourself."

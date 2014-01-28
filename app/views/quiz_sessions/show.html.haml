@@ -1,7 +1,14 @@
-= @card.definition
-= form_tag(answer_path, :method => 'post')do
-  = text_field_tag(:submitted_answer, nil, placeholder: "Enter your answer here" )
-  = hidden_field_tag(:card, @card.id)
-  = hidden_field_tag(:id, @quiz_session.id)
-  = submit_tag "Am I right?"
+.row
+  .large-12.columns.panel
+    %h3
+      = @card.definition
 
+  .large-12.columns
+    %h3
+      = form_tag(answer_path, :method => 'post')do
+        = text_field_tag(:submitted_answer, nil, placeholder: "Enter your answer here" )
+        = hidden_field_tag(:card, @card.id)
+        = hidden_field_tag(:id, @quiz_session.id)
+        .large-3.large-centered.columns.center-text
+          = submit_tag "Am I right?", class: "button"
+%hr/
