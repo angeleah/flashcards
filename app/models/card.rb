@@ -4,7 +4,7 @@ class Card < ActiveRecord::Base
   validates :terms, :definition, :category, :object_type, :example, :return_type, presence: true
 
   def self.object_types
-    select("object_type").collect(&:object_type).uniq!.sort
+    order("object_type").pluck("distinct object_type")
   end
 
   def self.categories
