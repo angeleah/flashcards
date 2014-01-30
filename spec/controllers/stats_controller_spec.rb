@@ -40,6 +40,6 @@ describe StatsController do
     end
   end
 end
-#TODO: make assigns test values other than nil through the app.
-#TODO: integration testing.
-#TODO: Factory girl.
+# TODO: make assigns test values other than nil through the app.
+# TODO: integration testing.
+# TODO: Factory girl.(get familiar with it to see the diff between rolling your own.)

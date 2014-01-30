@@ -1,9 +1,10 @@
 .row
-  .large-3.columns
+  .large-4.columns
     %h5 Stats
     - if @past_quizzes.empty?
       %h7 You haven't quized yourself yet!
-      %a{href: "/"} Quiz yourself
+      %p
+        = link_to("Quiz Yourself", root_path)
 
     - @past_quizzes.each do |quiz|
       %ul.side-nav
@@ -11,6 +12,5 @@
           %a{href: "#{ stat_path(quiz.id)}"} #{ quiz.category }'s #{ quiz.object_type }
           on #{ local_display_date(quiz.created_at) }
 
-
-  /  give overall stats in the empty chunk.
-  / what you quizzed yourself on/ how many times.
+/ TODO:give overall stats in the empty chunk. Use show as a guide.
+/ what you quizzed yourself on/ how many times.

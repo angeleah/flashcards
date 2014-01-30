@@ -2,8 +2,10 @@
   .large-4.columns
     %h3 Unfinished Quizzes
     - if @unfinished_quizzes.empty?
-      %h7 Congrats! You have no unfinished quizzes.
-      %a{href: "/"} Take a quiz now!
+      %h7 Congrats!
+      %p You have no unfinished quizzes.
+      %p
+        = link_to("Take a quiz now!", root_path, class: "button")
     - else
       - @unfinished_quizzes.each do |quiz|
         %ul.side-nav
@@ -11,9 +13,10 @@
             #{quiz.category}'s #{quiz.object_type} on #{local_display_date(quiz.created_at)}
             %a{ href: quiz_session_path(quiz.id) } Finish the quiz
   .large-8.columns.center-text
-    %p You're making progress!
-    %p.large-stat #{@finished_percentage}% finished
-    .progress-bar
-      .progress{style: "width:#{@finished_percentage}%;" }
-    %p #{@total_quiz_count -@unfinished_quizzes.count} out of #{@total_quiz_count} quizzes are finished.
-
+    - if @total_quiz_count > 0
+      %p You're making progress!
+      %p.large-stat #{@finished_percentage}% finished
+      .progress-bar
+        .progress{style: "width:#{@finished_percentage}%;" }
+      %p #{@total_quiz_count - @unfinished_quizzes.count} out of #{@total_quiz_count} quizzes are finished.
+      %P #{@unfinished_quizzes.count} left to finish.

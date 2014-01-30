@@ -11,8 +11,8 @@
         - if params[:action] != 'unfinished'
           %li
             = link_to("Unfinished Quizes", unfinished_path, class: "button")
-          %li
-            = link_to("Logout", destroy_user_session_path, :method => :delete, class: "button")
+        %li
+          = link_to("Logout", destroy_user_session_path, :method => :delete, class: "button")
     %h1
       Ruby Flashcards
     %h4 Know your tools.

@@ -41,8 +41,10 @@ class QuizSessionsController < ApplicationController
   def unfinished
     @unfinished_quizzes ||= QuizSession.where(user: current_user).collect{ |qs| qs if !qs.finished? }.compact
     @total_quiz_count = QuizSession.where(user: current_user).count
-    @unfinished_percentage = ((@unfinished_quizzes.count.to_f / @total_quiz_count.to_f) * 100).round
-    @finished_percentage = 100 - @unfinished_percentage
+    if @total_quiz_count >= 1
+      @unfinished_percentage = ((@unfinished_quizzes.count.to_f / @total_quiz_count.to_f) * 100).round
+      @finished_percentage = 100 - @unfinished_percentage
+    end
   end
 
   private
