@@ -77,6 +77,8 @@ describe QuizSessionsController do
 
       it { should render_template(:unfinished) }
       it { expect(assigns(:unfinished_quizzes).count).to eq(2) }
+      it { expect(assigns(:total_quiz_count)).to eq(2) }
+      it { expect(assigns(:finished_percentage)).to eq(0)}
     end
   end
 end
