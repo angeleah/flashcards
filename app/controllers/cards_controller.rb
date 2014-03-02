@@ -1,5 +1,5 @@
 class CardsController < ApplicationController
-  before_action :angeleah?
+  before_action :has_access?
   before_action :set_card, only: [:show, :edit, :update, :destroy]
 
   # GET /cards
@@ -73,7 +73,7 @@ class CardsController < ApplicationController
       params.require(:card).permit(:definition, :object_type, :example, :return_type, :category, terms_attributes: [:term])
     end
 
-    def angeleah?
-      redirect_to new_user_session_path unless current_user[:email] == "angeleah@gmail.com"
+    def has_access?
+      redirect_to new_user_session_path unless current_user[:email] == ENV['ADMIN_EMAIL']
     end
 end

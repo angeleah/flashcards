@@ -1,5 +1,5 @@
-angeleah = User.create!(email: "angeleah@gmail.com", password: "password", password_confirmation: "password")
-angeleah.confirm!
+person1 = User.create!(email: "test_user@testuser.com", password: "password", password_confirmation: "password")
+person1.confirm!
 
 person2 = User.create!(email: "person2@gmail.com", password: "password2", password_confirmation: "password2")
 person2.confirm!

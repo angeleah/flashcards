@@ -19,7 +19,7 @@ describe CardsController do
   let(:card) { Card.create!(card_attributes) }
 
   before(:each) do
-    @user = User.create!( email: "angeleah@gmail.com" , password: "coolpants")
+    @user = User.create!( email: ENV['ADMIN_EMAIL'] , password: "coolpants")
     @user.confirm!
     sign_in @user
     Card.destroy_all
