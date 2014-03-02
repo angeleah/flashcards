@@ -9,9 +9,11 @@ Usage:
   + cd into the directory.
   + using ruby 2.0.0-p353 ( if using rbenv and you don't have this ruby, after installing, $: gem install bundler)
   + $: bundle.
-  + This project is using [dotenv](https://github.com/bkeepers/dotenv) and requires that you create and set a secret token and an admin email in your .env file.
+  + This project is using [dotenv](https://github.com/bkeepers/dotenv) and requires that you create and set a secret token, admin email, key for Devise, and mailer address for Devise in your .env file.
     - Setting the secret key: Ex: inside .env -> SECRET_KEY = 'the generated secret key'.  You can generate a secret key using $: rake secret.
-    - setting the admin email: .env -> ADMIN_EMAIL = 'the email you want to be the admin email'
+    - Setting the admin email: .env -> ADMIN_EMAIL = 'the email you want to be the admin email'
+    - Setting the devise secret key: You can use $: rake secret to generate a secret key for devise. Store it in the .env file under the DEVISE_KEY = 'the generated devise key'.
+    - Setting the devise mailer sender : If you are using this in development, you can set MAILER_SENDER = 'please-change-me-at-config-initializers-devise@example.com'
   + $: rake db:migrate
   + $: rake db:seed ( when a window pops up to confirm your account, just close the window.  The account has been conformed programmatically.  This applies only to running the seeds file. If you add users manually through the app, you will need to click the confirm link.)
 
