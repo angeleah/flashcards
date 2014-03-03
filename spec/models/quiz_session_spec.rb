@@ -42,13 +42,13 @@ describe QuizSession do
   end
 
   describe "get question" do
-    before(:each) do
+    before do
       qs.questions.first.update!(correct: true)
       qs.questions.reload
     end
 
     it "gets an unanswered question" do
-      expect(qs.get_question).to eq(qs.questions.last)
+      expect(qs.get_question.correct).to be_nil
     end
   end
 
@@ -59,7 +59,8 @@ describe QuizSession do
     end
 
     it "gets an unanswered question" do
-      expect(qs.unanswered).to eq([qs.questions.last])
+      unanswered_question = qs.questions.where(correct: nil)
+      expect(qs.unanswered).to eq(unanswered_question)
     end
   end
 end

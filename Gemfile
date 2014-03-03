@@ -12,7 +12,6 @@ gem 'jquery-rails'
 gem 'pg'
 gem 'rails'
 gem 'sass-rails', '~> 4.0.0'
-gem 'sqlite3'
 gem 'turbolinks'
 gem 'uglifier', '>= 1.3.0'
 
@@ -39,3 +38,9 @@ group :development, :test do
   gem 'shoulda-matchers'
   gem "unicorn-formatter"
 end
+
+group :production do
+  gem 'rails_12factor'
+end
+
+ruby "2.1.0"
