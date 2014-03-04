@@ -15,7 +15,7 @@
   .field#termgroup
     = f.label :terms
     = f.fields_for :terms do |term|
-      term.text_field :term
+      = term.text_field :term
   %button#add_term + Term
   .field
     = f.label :return_type
