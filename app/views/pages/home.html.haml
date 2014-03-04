@@ -13,8 +13,7 @@
 
 :javascript
   var categoryObjectTypes = {
-    Ruby: <%= Card.category_object_types("Ruby").to_json %>
-    / Clojure: <%= Card.category_object_types("Clojure").to_json %>
+    Ruby: #{Card.category_object_types("Ruby").to_json}
   };
 
   $(document).ready( function() {
