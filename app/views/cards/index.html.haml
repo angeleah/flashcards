@@ -2,6 +2,7 @@
 
 %table
   %tr
+    %th Term
     %th Definition
     %th Object type
     %th Example
@@ -13,6 +14,7 @@
 
   - @cards.each do |card|
     %tr
+      %td= card.terms.first.term
       %td= card.definition
       %td= card.object_type
       %td= card.example
