@@ -8,10 +8,10 @@
 
   .field
     = f.label :category
-    = f.text_field :category, value: Card.last.category
+    = f.text_field :category, value: Card.last.try(:category)
   .field
     = f.label :object_type
-    = f.text_field :object_type, value: Card.last.object_type
+    = f.text_field :object_type, value: Card.last.try(:object_type)
   .field#termgroup
     = f.label :terms
     = f.fields_for :terms do |term|

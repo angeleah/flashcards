@@ -8,7 +8,7 @@ class Card < ActiveRecord::Base
   end
 
   def self.categories
-    select("category").collect(&:category).uniq!.sort
+    select("category").collect(&:category).uniq!.try(:sort) || []
   end
 
   def self.category_object_types(category)
