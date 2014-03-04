@@ -14,6 +14,7 @@ Usage:
     - Setting the admin email: .env -> ADMIN_EMAIL = 'the email you want to be the admin email'
     - Setting the devise secret key: You can use $: rake secret to generate a secret key for devise. Store it in the .env file under the DEVISE_KEY = 'the generated devise key'.
     - Setting the devise mailer sender : If you are using this in development, you can set MAILER_SENDER = 'please-change-me-at-config-initializers-devise@example.com'
+    - Setting the url for the emailer(production.rb): EMAIL_HOST = ' your_url'
   + $: rake db:migrate
   + $: rake db:seed ( when a window pops up to confirm your account, just close the window.  The account has been conformed programmatically.  This applies only to running the seeds file. If you add users manually through the app, you will need to click the confirm link.)
 

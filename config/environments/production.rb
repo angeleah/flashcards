@@ -18,6 +18,21 @@ Flashcards::Application.configure do
   # Add `rack-cache` to your Gemfile before enabling this.
   # For large-scale production use, consider using a caching reverse proxy like nginx, varnish or squid.
   # config.action_dispatch.rack_cache = true
+  config.action_mailer.default_url_options = { :host => ENV['EMAIL_HOST'] }
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.default :charset => "utf-8"
+  ActionMailer::Base.smtp_settings = {
+    port: 587,
+    address: "smtp.mandrillapp.com",
+    user_name:  ENV['MANDRILL_USERNAME'],
+    password: ENV['MANDRILL_APIKEY'],
+    domain: "heroku.com",
+    authentication: :plain,
+  }
+
+  ActionMailer::Base.delivery_method = :smtp
 
   # Disable Rails's static asset server (Apache or nginx will already do this).
   config.serve_static_assets = false
