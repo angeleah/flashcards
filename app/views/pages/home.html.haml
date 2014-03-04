@@ -11,5 +11,29 @@
       = submit_tag "Start my study session!", class: "button"
 %hr/
 
-- content_for :page_specific_scripts do
-  = javascript_include_tag "home_page"
+:javascript
+  var categoryObjectTypes = {
+    Ruby: <%= Card.category_object_types("Ruby").to_json %>
+    / Clojure: <%= Card.category_object_types("Clojure").to_json %>
+  };
+
+  $(document).ready( function() {
+
+    function getSelectedCategory() {
+      return $(".category_select").val();
+    }
+
+    function renderDependentSelect(category) {
+      var select = $("#object_type");
+      select.empty();
+      $.each(categoryObjectTypes[category], function(i, val) {
+        select.append('<option value=' + val + '>' + val + '</option>');
+      });
+    }
+
+    $("#category").on("change", function(){
+      renderDependentSelect(getSelectedCategory());
+    });
+
+    renderDependentSelect(getSelectedCategory());
+  });
