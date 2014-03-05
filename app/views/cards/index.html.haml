@@ -11,10 +11,10 @@
 
   - @cards.each do |card|
     %tr
-      %td= card.terms.first.term
-      %td= card.definition
+      %td= card.terms.map(&:term).join(", ")
+      %td{ title: card.definition }= card.definition.truncate(20)
       %td= card.object_type
-      %td= card.example
+      %td= card.example.html_safe
       %td= card.return_type
       %td= card.category
       %td= link_to 'Show', card

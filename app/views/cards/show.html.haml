@@ -1,6 +1,6 @@
 %p
   %b Term:
-  = @card.terms.first.term
+  = @card.terms.map(&:term).join(", ")
 %p
   %b Definition:
   = @card.definition
@@ -9,7 +9,7 @@
   = @card.object_type
 %p
   %b Example:
-  = @card.example
+  = @card.example.html_safe
 %p
   %b Return type:
   = @card.return_type
