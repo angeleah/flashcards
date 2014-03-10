@@ -7,7 +7,7 @@ Usage:
 - Getting started:
   + clone the app.
   + cd into the directory.
-  + using ruby 2.0.0-p353 ( if using rbenv and you don't have this ruby, after installing, $: gem install bundler)
+  + using ruby 2.1.0 ( if using rbenv and you don't have this ruby, after installing, $: gem install bundler)
   + $: bundle.
   + This project is using [dotenv](https://github.com/bkeepers/dotenv) and requires that you create and set a secret token, admin email, key for Devise, and mailer address for Devise in your .env file.
     - Setting the secret key: Ex: inside .env -> SECRET_KEY = 'the generated secret key'.  You can generate a secret key using $: rake secret.
