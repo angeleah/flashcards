@@ -20,7 +20,6 @@ class QuizSessionsController < ApplicationController
       redirect_to stat_path(@quiz_session)
     else
       @card = @quiz_session.get_question.card
-
     end
   end
 
