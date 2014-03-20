@@ -64,7 +64,7 @@ describe QuizSessionsController do
       it "redirects to quiz session path" do
         post :answer, submitted_answer: "cool_method", card: current_card, id: @qs.id
         response.should redirect_to(quiz_session_path(@qs))
-        expect(flash[:alert]).to eq("That was incorrect.")
+        expect(flash[:alert]).to include("That was incorrect. The correct answer was")
       end
     end
 

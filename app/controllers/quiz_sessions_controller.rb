@@ -20,6 +20,7 @@ class QuizSessionsController < ApplicationController
       redirect_to stat_path(@quiz_session)
     else
       @card = @quiz_session.get_question.card
+
     end
   end
 
@@ -34,7 +35,7 @@ class QuizSessionsController < ApplicationController
       redirect_to quiz_session_url(quiz_session), alert: "That was correct."
     else
       question_record.update!(answer: submitted_answer, correct: false)
-      redirect_to quiz_session_url(quiz_session), alert: "That was incorrect."
+      redirect_to quiz_session_url(quiz_session), alert: "That was incorrect. The correct answer was #{possible_answers.join(" or ")}."
     end
   end
 
