@@ -1,7 +1,19 @@
+// let(:card_attributes) do
+//   {
+//     X terms_attributes: [
+//       { term: "-"},
+//       { term: "array difference"}
+//       ],
+//     X definition: "Hello",
+//     X object_type: "Array",
+//     X example: 'hello',
+//     return_type: "new Array",
+//     X category: "Ruby"
+//   }
+// end
 var urlParts = location.href.split('/');
 var objectType = urlParts[urlParts.length - 1].replace(/\.html$/, '');
-var instanceMethods = [];
-var classMethods = [];
+var methods = [];
 
 $("#method-list-section .link-list li a").each(function() {
   var methodLink = $(this);
@@ -9,16 +21,30 @@ $("#method-list-section .link-list li a").each(function() {
   var details = {
     category: "Ruby",
     object_type: objectType,
-    terms_attributes: [{ term: methodLink.text().replace(/^(#|::)/, "") }],
-    definition: getDefinition($(methodDetail))
+    terms_attributes: getTermsAttributes(methodLink, methodDetail),
+    definition: getDefinition(methodDetail),
+    example: getExample(methodDetail),
   };
+  methods.push(details);
   console.log(details);
-  // if (isClassMethod()) {
+ });
 
-  // } else {
+function getExample(methodDetail) {
+  codeBlock = methodDetail.find(".method-description > pre");
+  if (codeBlock.length) {
+    return "<pre>" + $(codeBlock).html() + "</pre>";
+  }
+}
 
-  // }
-});
+function getTermsAttributes(methodLink, methodDetail) {
+  terms_attributes = [];
+  var paragraphs = methodDetail.find(".method-description > p");
+  terms_attributes.push({ term: methodLink.text().replace(/^(#|::)/, "") });
+  if ( !methodDetail.hasClass("method-alias") && $(paragraphs[0]).text().match(/—/) ) {
+    terms_attributes.push({ term: $(paragraphs[0]).text().split('—')[0].trim() });
+  }
+  return terms_attributes;
+}
 
 function getDefinition(elem) {
   var definition = "";
@@ -32,27 +58,15 @@ function getDefinition(elem) {
       definition += paragraph;
     }
   });
-  definition =   definition.replace(/^.+—\s?/, '');
+  definition = definition.replace(/^.+—\s?/, '');
   return definition;
 }
+
 function isClassMethod() {
   return !!$(this).attr("id").match(/^method-c/);
 }
 
 
-// let(:card_attributes) do
-//   {
-//     terms_attributes: [
-//       { term: "-"},
-//       { term: "array difference"}
-//       ],
-//     definition: "Hello",
-//     object_type: "Array",
-//     example: 'hello',
-//     return_type: "new Array",
-//     category: "Ruby"
-//   }
-// end
 
 
 
