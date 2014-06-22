@@ -9,4 +9,4 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-Flashcards::Application.config.secret_key_base = ENV['SECRET_KEY']
+Flashcards::Application.config.secret_key_base = 'de3f5e1753a0144709fd339d9caf7b1d0ba8d8aa0c24b9ab17793df01548d6138e0192e2fa210d5aeef94aa7bdd2818e9bbd76bbf407f73504403273b3796cb1'

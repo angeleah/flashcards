@@ -2,12 +2,12 @@ require 'spec_helper'
 
 describe CardsController do
 
- let(:card_attributes) do
-  {
-    terms_attributes: [
-      { term: "-"},
-      { term: "array difference"}
-      ],
+  let(:card_attributes) do
+    {
+      terms_attributes: [
+        { term: "-"},
+        { term: "array difference"}
+        ],
       definition: "Hello",
       object_type: "Array",
       example: 'hello',
