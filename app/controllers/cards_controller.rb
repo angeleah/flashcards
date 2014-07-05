@@ -75,6 +75,6 @@ class CardsController < ApplicationController
     end
 
     def has_access?
-      redirect_to new_user_session_path unless current_user[:email] == ENV['ADMIN_EMAIL']
+      redirect_to new_user_session_path unless current_user && current_user[:email] == ENV['ADMIN_EMAIL']
     end
 end
