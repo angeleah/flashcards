@@ -1,4 +1,5 @@
 class CardsController < ApplicationController
+  protect_from_forgery except: :create
   before_action :has_access?
   before_action :set_card, only: [:show, :edit, :update, :destroy]
 

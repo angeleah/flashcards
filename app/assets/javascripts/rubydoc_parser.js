@@ -9,6 +9,7 @@ script.onload = function() {
     var methodLink = $(this);
     var methodDetail = $(methodLink.attr("href"));
     var details = {
+      authenticity_token: "BTIuF6E43tqIS7VSoSRv0BCqDoebDnUpXNgldqumuEU=",
       category: "Ruby",
       object_type: objectType,
       terms_attributes: getTermsAttributes(methodLink, methodDetail),
@@ -28,7 +29,23 @@ script.onload = function() {
   }
 
   function sendMethods() {
-    alert("do it");
+    methods.forEach(function(method) {
+      $.ajax({
+        type: "POST",
+        url: "/cards",
+        data: { card: method }
+      })
+        .done(function(data) {
+          console.log(method.terms_attributes.join(", ") + " succeeded");
+        })
+        .fail(function(data) {
+          console.log(method.terms_attributes.join(", ") + " failed");
+        });
+    });
+  }
+
+  function reset() {
+    window.location.replace(window.location.href);
   }
 
   function displayMethods() {
@@ -50,10 +67,10 @@ script.onload = function() {
 
     exampleContainer.append('<button id="doit">Do It</button><br /><button id="nope">Nope</button>');
 
-    // $("#doit").on("click", sendMethods);
-    // $("#nope").on("click", reset);
-
     main.after(exampleContainer);
+
+    $("#doit").click(sendMethods);
+    $("#nope").click(reset);
   }
 
   function getReturnType(methodDetail) {

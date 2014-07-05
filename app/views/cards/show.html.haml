@@ -3,7 +3,7 @@
   = @card.terms.map(&:term).join(", ")
 %p
   %b Definition:
-  = @card.definition
+  = @card.definition.html_safe
 %p
   %b Object type:
   = @card.object_type
